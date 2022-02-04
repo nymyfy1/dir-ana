@@ -11,17 +11,19 @@ void dir_iterator(std::string path) {
     std::string st;
     for (auto entry : fs::recursive_directory_iterator(path)) {
         std::ifstream inf;
-        std::cout << path;
-        system("pause");
-        /*inf.open(path);
-        nb = 0;
-        while (!inf.eof()) {
-            getline(inf, st);
-            std::cout << nb++;
+        //std::cout << path << "\n";
+        if (entry.is_regular_file()) {
+            inf.open(entry);
+            nb = 0;
+            while (!inf.eof()) {
+                getline(inf, st);
+                nb++;
 
+            }
+            inf.close();
+            std::cout << entry << " entry" <<" has " << nb << " line/s\n";
         }
-        inf.close();*/
-        std::cout << entry /*<< " : " << nb*/ << " lines\n";
+
     }
 }
 
